@@ -24,7 +24,7 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
           50: "hsl(var(--primary-050))",
           outlined: "hsl(var(--primary-outlined))",
-          'outlined-active': "hsl(var(--primary-outlined-active))",
+          "outlined-active": "hsl(var(--primary-outlined-active))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -99,7 +99,13 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        pretendard: ["Pretendard Variable", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
+        pretendard: [
+          "Pretendard Variable",
+          "-apple-system",
+          "Roboto",
+          "Helvetica",
+          "sans-serif",
+        ],
       },
     },
   },
