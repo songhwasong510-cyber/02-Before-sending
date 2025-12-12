@@ -22,6 +22,9 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          50: "hsl(var(--primary-050))",
+          outlined: "hsl(var(--primary-outlined))",
+          'outlined-active': "hsl(var(--primary-outlined-active))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -57,6 +60,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        neutral: {
+          50: "hsl(var(--neutral-050))",
+          border: "hsl(var(--neutral-border))",
+          soft: "hsl(var(--neutral-soft))",
+        },
+        text: {
+          primary: "hsl(var(--text-primary))",
+          secondary: "hsl(var(--text-secondary))",
+          tertiary: "hsl(var(--text-tertiary))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,6 +97,9 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        pretendard: ["Pretendard Variable", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
       },
     },
   },
