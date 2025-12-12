@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Index() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("user");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-white">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       {sidebarOpen && (
-        <aside className="w-[234px] bg-neutral-50 flex-shrink-0 flex flex-col">
+        <aside className="w-[234px] bg-neutral-50 flex-shrink-0 flex flex-col fixed md:relative h-full z-50 md:z-auto">
           {/* Sidebar Header */}
           <div className="h-[52px] flex items-center justify-between px-[18px]">
             <svg width="23" height="20" viewBox="0 0 23 20" fill="none">
@@ -128,7 +150,7 @@ export default function Index() {
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 py-8 md:py-12 relative overflow-hidden">
           {/* Background Gradient Blurs */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <svg width="100%" height="100%" viewBox="0 0 1206 850" fill="none" className="max-w-[804px]">
@@ -154,22 +176,22 @@ export default function Index() {
           </div>
 
           {/* Main Content */}
-          <div className="relative z-10 w-full max-w-[804px] flex flex-col items-center space-y-8">
+          <div className="relative z-10 w-full max-w-[804px] flex flex-col items-center space-y-6 md:space-y-8">
             {/* Logo */}
-            <div className="w-[140px] h-[140px] relative flex items-center justify-center">
-              <img 
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a585841982ff3e07c82f91b75ff57119f5f2d5f3?width=280" 
-                alt="AgentGo Logo" 
+            <div className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] relative flex items-center justify-center">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/a585841982ff3e07c82f91b75ff57119f5f2d5f3?width=280"
+                alt="AgentGo Logo"
                 className="w-full h-full object-contain"
               />
             </div>
 
             {/* Title and Subtitle */}
-            <div className="text-center space-y-2">
-              <h1 className="text-[30px] font-bold text-text-primary leading-[133%]">
+            <div className="text-center space-y-1 md:space-y-2">
+              <h1 className="text-2xl md:text-[30px] font-bold text-text-primary leading-[133%]">
                 무엇을 도와드릴까요?
               </h1>
-              <p className="text-lg font-bold text-text-primary leading-[166%]">
+              <p className="text-base md:text-lg font-bold text-text-primary leading-[166%]">
                 원하는 작업을 선택하거나 입력해보세요.
               </p>
             </div>
@@ -199,11 +221,11 @@ export default function Index() {
             </div>
 
             {/* Tabs */}
-            <div className="flex items-center gap-0 rounded border border-primary-outlined overflow-hidden">
-              <button 
-                className={`h-8 px-3 text-sm font-bold transition-colors ${
-                  activeTab === 'user' 
-                    ? 'bg-primary-outlined-active text-primary' 
+            <div className="flex items-center gap-0 rounded border border-primary-outlined overflow-hidden text-xs md:text-sm">
+              <button
+                className={`h-8 px-2 md:px-3 font-bold transition-colors whitespace-nowrap ${
+                  activeTab === 'user'
+                    ? 'bg-primary-outlined-active text-primary'
                     : 'bg-transparent text-primary hover:bg-primary-outlined-active/50'
                 }`}
                 onClick={() => setActiveTab('user')}
@@ -211,10 +233,10 @@ export default function Index() {
                 사용자 설정
               </button>
               <div className="w-px h-full bg-primary-outlined"></div>
-              <button 
-                className={`h-8 px-3 text-sm font-bold transition-colors ${
-                  activeTab === 'automation' 
-                    ? 'bg-primary-outlined-active text-primary' 
+              <button
+                className={`h-8 px-2 md:px-3 font-bold transition-colors whitespace-nowrap ${
+                  activeTab === 'automation'
+                    ? 'bg-primary-outlined-active text-primary'
                     : 'bg-transparent text-primary hover:bg-primary-outlined-active/50'
                 }`}
                 onClick={() => setActiveTab('automation')}
@@ -222,10 +244,10 @@ export default function Index() {
                 업무 자동화
               </button>
               <div className="w-px h-full bg-primary-outlined"></div>
-              <button 
-                className={`h-8 px-3 text-sm font-bold transition-colors ${
-                  activeTab === 'tools' 
-                    ? 'bg-primary-outlined-active text-primary' 
+              <button
+                className={`h-8 px-2 md:px-3 font-bold transition-colors whitespace-nowrap ${
+                  activeTab === 'tools'
+                    ? 'bg-primary-outlined-active text-primary'
                     : 'bg-transparent text-primary hover:bg-primary-outlined-active/50'
                 }`}
                 onClick={() => setActiveTab('tools')}
