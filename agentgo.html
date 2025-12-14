@@ -153,16 +153,19 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        padding: 10px;
+        padding: 10px 10px 10px 10px;
         border: none;
         border-radius: 4px;
         background: none;
         cursor: pointer;
         font-size: 14px;
         font-weight: 700;
+        line-height: 1.42;
         color: var(--text-secondary);
-        transition: background-color 0.2s;
+        transition: all 0.2s;
         position: relative;
+        width: 100%;
+        justify-content: flex-start;
       }
 
       .menu-item svg {
@@ -392,8 +395,9 @@
 
       /* Logo */
       .logo-container {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -401,15 +405,37 @@
 
       @media (max-width: 767px) {
         .logo-container {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      .logo-mask {
+        width: 140px;
+        height: 140px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+      }
+
+      @media (max-width: 767px) {
+        .logo-mask {
           width: 100px;
           height: 100px;
         }
       }
 
-      .logo-container img {
+      .logo-mask img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        display: block;
+      }
+
+      .logo-overlay {
+        position: absolute;
+        inset: 0;
+        mix-blend-mode: screen;
       }
 
       /* Title Section */
@@ -532,25 +558,32 @@
 
       /* Tabs */
       .tabs {
-        display: flex;
-        align-items: center;
+        display: inline-flex;
+        align-items: flex-start;
         gap: 0;
         border: 1px solid var(--primary-outlined);
         border-radius: 4px;
         overflow: hidden;
+        width: 254px;
+        height: 32px;
       }
 
       .tab-btn {
         height: 32px;
-        padding: 0 12px;
+        padding: 2px 12px;
         border: none;
         background: none;
         color: var(--primary);
         font-size: 14px;
         font-weight: 700;
+        line-height: 1.42;
         cursor: pointer;
         white-space: nowrap;
         transition: background-color 0.2s;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       @media (max-width: 767px) {
